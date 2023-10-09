@@ -5,9 +5,37 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Pong Clash</title>
     <style>
-      body {
-        margin: 0;
-      }
+    	body, html {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			overflow: hidden; /* This ensures no scrollbars */
+		}
+
+		#container {
+			position: relative;
+			height: 100%;
+			width: 100%;
+			background-color: lightgray; /* Optional: Set a background color for the container */
+		}
+
+		#myCanvas {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 80%;
+			background-color: lightblue; /* Optional: Set a background color for the canvas */
+		}
+
+		#myInput {
+			position: absolute;
+			top: 0;
+			right: 0;
+			height: 100%;
+			width: 20%;
+			padding: 10px; /* Optional: Add padding to the input element */
+		}
     </style>
   </head>
   <body>
@@ -23,7 +51,10 @@
     >
       <span>Score: <span id="scoreEl">0</span></span>
     </div>
-    <canvas></canvas>
+    <div id="container">
+        <canvas id="myCanvas"></canvas>
+        <input type="text" id="myInput" placeholder="Enter something...">
+    </div>
 
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.2/gsap.min.js"

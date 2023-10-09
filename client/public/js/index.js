@@ -12,21 +12,25 @@ const y = canvas.height - 25
 const players = {}
 
 socket.on('updatePlayers', (backendPlayers) => {
+	for (const id in players) {
+			delete players[id];
+	}
 	for (let i = 0; i < backendPlayers.length; i++) {
-		if (!players[backendPlayers[i]]) {
-			players[backendPlayers[i]] = new Player(x, y * i, 'white');
+		if (backendPlayers[i] && !players[backendPlayers[i].id]) {
+			players[backendPlayers[i].id] = new Player(x + backendPlayers[i].x, y * i, 'white');
 		}
 	}
+	const playerIds = backendPlayers.map(player => player.id);
 	for (const id in players) {
-		if (!backendPlayers.includes(id)) {
-			delete players[id]
+		if (!playerIds.includes(id)) {
+			delete players[id];
 		}
 	}
 	console.log(players);
+	
 });
 
 let animationId
-let score = 0
 function animate() {
 	animationId = requestAnimationFrame(animate)
 	c.fillStyle = 'rgba(0, 0, 0, 0.1)'
@@ -44,4 +48,40 @@ function animate() {
 	}
 }
 
+
+
 animate()
+
+window.addEventListener('keydown', (e) => {
+	const speed = 20;
+	switch (e.code) {
+		case 'KeyD':
+			if (players[socket.id].x + 185 + 20 >= canvas.width) {
+				break;
+			}
+			players[socket.id].x += speed;
+			socket.emit('keyDown', 'right');
+			break;
+		case 'KeyA':
+			if (players[socket.id].x <= 0) {
+				break;
+			}
+			players[socket.id].x -= speed;
+			socket.emit('keyDown', 'left');
+			break;
+		case 'ArrowLeft':
+			if (players[socket.id].x <= 0) {
+				break;
+			}
+			players[socket.id].x -= speed;
+			socket.emit('keyDown', 'left');
+			break;
+		case 'ArrowRight':
+			if (players[socket.id].x + 185 + 20 >= canvas.width) {
+				break;
+			}
+			players[socket.id].x += speed;
+			socket.emit('keyDown', 'right');
+			break;
+	}
+});
