@@ -7,12 +7,9 @@ class Player {
 
   draw() {
     c.beginPath()
-    c.rect(this.x, this.y, 180, 20)
+    c.rect(this.x, this.y, 20, 120)
     c.fillStyle = this.color
     c.fill()
-	c.strokeStyle = 'red';
-	c.lineWidth = 5;
-	c.stroke();
   }
   
 }

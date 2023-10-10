@@ -24,7 +24,7 @@ io.on('connection', (socket) => {
 	socket.join(roomName);
 	rooms[roomName].users[rooms[roomName].users.indexOf(null)] = {
 		id: socket.id,
-		x: 0,
+		y: 0,
 	};
 	console.log(`User ${socket.id} joined room: ${roomName}`);
 
@@ -50,15 +50,30 @@ io.on('connection', (socket) => {
 		const speed = 20; 
 		switch (key) {
 			case 'right':
-				rooms[roomName].users.find(user => user.id === socket.id).x += speed;
+				rooms[roomName].users.find(user => user.id === socket.id).y += speed;
 				break;
 			case 'left':
-				rooms[roomName].users.find(user => user.id === socket.id).x -= speed;
+				rooms[roomName].users.find(user => user.id === socket.id).y -= speed;
 				break;
 			default:
 				console.log('Invalid key');
 		}
 		io.to(roomName).emit('updatePlayers', rooms[roomName].users);
+	});
+	socket.on('updateBall', (ball) => {
+		ball.x += ball.velovityX;
+		ball.y += ball.velovityY;
+		if (ball.y + 15 >= ball.maxheight || ball.y - 15 <= 0) {
+			ball.velovityY *= -1;
+		}
+		if (rooms[roomName].users[0] && ball.x - 15 <= 20 && ball.y >= rooms[roomName].users[0].y && ball.y <= rooms[roomName].users[0].y + 120) {
+			ball.velovityX *= -1;
+		}
+		if (rooms[roomName].users[1] && ball.x + 15 >= ball.maxwidth - 20 && ball.y >= rooms[roomName].users[1].y && ball.y <= rooms[roomName].users[1].y + 120) {
+			ball.velovityX *= -1;
+		}
+		
+		io.to(roomName).emit('updateBall', ball);
 	});
 });
 
