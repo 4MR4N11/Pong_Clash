@@ -1,5 +1,5 @@
-# PONG CLASH
+# Pong Clash
 
 ## Description
 
-Bringing classic ping pong gameplay into the digital world with real-time multiplayer and integrated in-game chat. 
+Bringing classic ping pong gameplay into the digital world with real-time multiplayer and integrated in-game chat.

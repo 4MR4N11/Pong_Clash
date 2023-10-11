@@ -1,70 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Pong Clash</title>
-    <style>
-    	body, html {
-			height: 100%;
-			margin: 0;
-			padding: 0;
-			overflow: hidden; /* This ensures no scrollbars */
-		}
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
 
-		#container {
-			position: relative;
-			height: 100%;
-			width: 100%;
-			background-color: lightgray; /* Optional: Set a background color for the container */
-		}
-
-		#myCanvas {
-			position: absolute;
-			top: 0;
-			left: 0;
-			height: 100%;
-			width: 85%;
-			background-color: lightblue; /* Optional: Set a background color for the canvas */
-		}
-
-		#myInput {
-			position: absolute;
-			top: 0;
-			right: 0;
-			height: 100%;
-			width: 15%;
-			padding: 10px; /* Optional: Add padding to the input element */
-		}
-    </style>
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
   </head>
   <body>
-    <div
-      style="
-        position: absolute;
-        color: white;
-        padding: 8px;
-        font-family: sans-serif;
-        font-size: 14px;
-        user-select: none;
-      "
-    >
-      <span>Score: <span id="scoreEl">0</span></span>
-    </div>
-    <div id="container">
-        <canvas id="myCanvas"></canvas>
-        <input type="text" id="myInput" placeholder="Enter something...">
-    </div>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.2/gsap.min.js"
-      integrity="sha512-kVlGhj2qFy+KBCFuvjBJTGUMxbdqJKs4yK2jh0e0VPhWUPiPC87bzm4THmaaIee3Oj7j6sDpTTgm2EPPiESqBg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-	<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
-    <script src="./js/classes/Player.js"></script>
-	<script src="./js/classes/Ball.js"></script>
-    <script src="./js/index.js"></script>
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
   </body>
 </html>
